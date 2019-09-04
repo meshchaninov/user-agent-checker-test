@@ -33,5 +33,21 @@
     {{ visitor.user_agent.device_family }}
     <hr>
     {% endfor %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if visitors.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ visitors.previous_page_number }}">{{ visitors.previous_page_number }}</a>
+            {% endif %}
+            <span class="current">
+                <a href="?page={{ visitors.number }}"> {{ visitors.number }}</a>
+            </span>
+
+            {% if visitors.has_next %}
+            <a href="?page={{ visitors.next_page_number }}">{{ visitors.next_page_number }}</a>
+            <a href="?page={{ visitors.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 </body>
 </html>

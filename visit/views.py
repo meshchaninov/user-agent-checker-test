@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from datetime import datetime
 from .models import Visitor, UserAgent
 
@@ -20,6 +21,10 @@ def index(request):
             device_family = user_agent.device.family
         )
     )
-    visitors = Visitor.objects.all()
+    visitors_list = Visitor.objects.all()
+
+    paginator = Paginator(visitors_list, 5)
+    page = request.GET.get('page')
+    visitors = paginator.get_page(page)
 
     return render(request, "index.html", {"visitors": visitors})
