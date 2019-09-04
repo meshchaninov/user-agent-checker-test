@@ -1,53 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
-    {% for visitor in visitors %}
-    {{ visitor.datetime }}
-    <br>
-    {{ visitor.address}}
-    <br>
-    {{ visitor.user_agent.is_mobile }}
-    <br>
-    {{ visitor.user_agent.is_touch }}
-    <br>
-    {{ visitor.user_agent.is_tablet}}
-    <br>
-    {{ visitor.user_agent.is_pc }}
-    <br>
-    {{ visitor.user_agent.is_bot }}
-    <br>
-    {{ visitor.user_agent.browser_family}}
-    <br>
-    {{ visitor.user_agent.browser_version }}
-    <br>
-    {{ visitor.user_agent.os_family }}
-    <br>
-    {{ visitor.user_agent.os_version}}
-    <br>
-    {{ visitor.user_agent.device_family }}
-    <hr>
-    {% endfor %}
-    <div class="pagination">
-        <span class="step-links">
-            {% if visitors.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ visitors.previous_page_number }}">{{ visitors.previous_page_number }}</a>
-            {% endif %}
-            <span class="current">
-                <a href="?page={{ visitors.number }}"> {{ visitors.number }}</a>
-            </span>
+    <div class="container">
+        <h1>Информация о посещениях</h1>
+        {% for visitor in visitors %}
+        <div class="row">
+            <div class="col-md-2">
+                <b>id: </b>{{ visitor.id }}
+                {% if forloop.last and not visitors.has_next %}
+                <br>
+                <span class="badge badge-primary">Это вы</span>
+                {% endif %}
+            </div>
+            <div class="col-md-7">
+                Дата и время посещения: <small class="text-muted">{{ visitor.datetime }}</small>
+                <br>
+                IP-адресс: <small class="text-muted">{{ visitor.address }}</small>
+                <br>
+                Это телефон: <small class="text-muted">{{ visitor.user_agent.is_mobile }}</small>
+                <br>
+                Сенсорный экран: <small class="text-muted">{{ visitor.user_agent.is_touch }}</small>
+                <br>
+                Это планшет: <small class="text-muted">{{ visitor.user_agent.is_tablet}}</small>
+                <br>
+                Это персональный компьютер: <small class="text-muted">{{ visitor.user_agent.is_pc }}</small>
+                <br>
+                Это бот: <small class="text-muted">{{ visitor.user_agent.is_bot }}</small>
+                <br>
+                Семейство браузеров: <small class="text-muted">{{ visitor.user_agent.browser_family}}</small>
+                <br>
+                Версия браузера: <small class="text-muted">{{ visitor.user_agent.browser_version }}</small>
+                <br>
+                Семейство операционных систем: <small class="text-muted">{{ visitor.user_agent.os_family }}</small>
+                <br>
+                Версия операционной системы: <small class="text-muted">{{ visitor.user_agent.os_version}}</small>
+                <br>
+                Семество устройств: <small class="text-muted">{{ visitor.user_agent.device_family }}</small>
+                <hr>
+            </div>  
+        </div>
+        {% endfor %}
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                {% if visitors.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">&laquo;</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ visitors.previous_page_number }}">{{ visitors.previous_page_number }}</a>
+                </li>
+                {% endif %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ visitors.number }}"> {{ visitors.number }}</a>
+                </li>
 
-            {% if visitors.has_next %}
-            <a href="?page={{ visitors.next_page_number }}">{{ visitors.next_page_number }}</a>
-            <a href="?page={{ visitors.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
-        </span>
+                {% if visitors.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ visitors.next_page_number }}">{{ visitors.next_page_number }}</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ visitors.paginator.num_pages }}">&raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
     </div>
 </body>
 </html>
