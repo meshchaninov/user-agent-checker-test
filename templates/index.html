@@ -9,8 +9,26 @@
 <body>
     {{ visitor.datetime }}
     <br>
-    {{ visitor.user_agent }}
-    <br>
     {{ visitor.address}}
+    <br>
+    {{ visitor.user_agent.is_mobile }}
+    <br>
+    {{ visitor.user_agent.is_touch }}
+    <br>
+    {{ visitor.user_agent.is_tablet}}
+    <br>
+    {{ visitor.user_agent.is_pc }}
+    <br>
+    {{ visitor.user_agent.is_bot }}
+    <br>
+    {{ visitor.user_agent.browser_family}}
+    <br>
+    {{ visitor.user_agent.browser_version }}
+    <br>
+    {{ visitor.user_agent.os_family }}
+    <br>
+    {{ visitor.user_agent.os_version}}
+    <br>
+    {{ visitor.user_agent.device_family }}
 </body>
 </html>
