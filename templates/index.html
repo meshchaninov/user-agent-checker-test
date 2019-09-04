@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    {% for visitor in visitors %}
     {{ visitor.datetime }}
     <br>
     {{ visitor.address}}
@@ -30,5 +31,7 @@
     {{ visitor.user_agent.os_version}}
     <br>
     {{ visitor.user_agent.device_family }}
+    <hr>
+    {% endfor %}
 </body>
 </html>

@@ -8,13 +8,13 @@ class UserAgent(models.Model):
     is_pc = models.BooleanField("is pc")
     is_bot = models.BooleanField("is bot")
 
-    browser_family = models.CharField("browser family", max_length=50)
-    browser_version = models.CharField("browser version", max_length=20)
+    browser_family = models.CharField("browser family", max_length=20)
+    browser_version = models.CharField("browser version", max_length=10)
 
-    os_family = models.CharField("os family", max_length=50)
-    os_version = models.CharField("os version", max_length=20)
+    os_family = models.CharField("os family", max_length=20)
+    os_version = models.CharField("os version", max_length=10)
 
-    device_family = models.CharField("device family", max_length=50)
+    device_family = models.CharField("device family", max_length=20)
 
 class Visitor(models.Model):
     datetime = models.DateTimeField("time of visiting", auto_now=False, auto_now_add=True)

@@ -5,7 +5,7 @@ from .models import Visitor, UserAgent
 
 def index(request):
     user_agent = request.user_agent
-    visitor = Visitor.objects.create(
+    Visitor.objects.create(
         address = request.META['REMOTE_ADDR'],
         user_agent = UserAgent.objects.create(
             is_mobile = user_agent.is_mobile,
@@ -20,5 +20,6 @@ def index(request):
             device_family = user_agent.device.family
         )
     )
+    visitors = Visitor.objects.all()
 
-    return render(request, "index.html", {"visitor": visitor})
+    return render(request, "index.html", {"visitors": visitors})
