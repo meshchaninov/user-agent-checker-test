@@ -21,10 +21,12 @@ def index(request):
             device_family = user_agent.device.family
         )
     )
-    visitors_list = Visitor.objects.all()
+    visitors_list = Visitor.objects.all().order_by('id')
 
     paginator = Paginator(visitors_list, 5)
     page = request.GET.get('page')
+    if page is None:
+        page = paginator.num_pages
     visitors = paginator.get_page(page)
 
     return render(request, "index.html", {"visitors": visitors})
