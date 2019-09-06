@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import User
 
 
 class UserAgent(models.Model):
@@ -20,3 +21,4 @@ class Visitor(models.Model):
     datetime = models.DateTimeField("time of visiting", auto_now=False, auto_now_add=True)
     address = models.CharField("remote address", max_length=20, null=True)
     user_agent = models.OneToOneField("UserAgent", verbose_name="user agent", on_delete=models.CASCADE)
+    user = models.ForeignKey("accounts.User", verbose_name="", on_delete=models.DO_NOTHING, null=True)

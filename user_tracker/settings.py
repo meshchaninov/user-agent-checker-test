@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_user_agents',
+    'crispy_forms',
+    'accounts',
     'visit',
 ]
 
@@ -123,3 +125,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 USER_AGENT_CACHE = None
+
+AUTH_USER_MODEL = 'accounts.User'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL =  '/'
