@@ -44,3 +44,6 @@ def profile_username(response, username):
     else:
         user = get_object_or_404(User, username=username)
         return render(response, "registration/profile_read_only.html", {"other_user": user})
+
+def password_change_done(response):
+    return render(response, "registration/password_change_done.html")
