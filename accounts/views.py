@@ -1,5 +1,6 @@
 # views.py
 from django.shortcuts import render, redirect, HttpResponse
+from django.contrib.auth import authenticate, login
 from .forms import RegisterForm, EditProfileForm
 
 # Create your views here.
@@ -8,6 +9,11 @@ def register(response):
         form = RegisterForm(response.POST, response.FILES)
         if form.is_valid():
             form.save()
+            new_user = authenticate(
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password1'],
+            )
+            login(response, new_user)
             return redirect("/")
     else:
         form = RegisterForm()
