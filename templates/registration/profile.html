@@ -1,0 +1,22 @@
+{% extends  'registration/base_registration.html' %}
+{% load crispy_forms_tags %}
+
+{% block registration %}
+<center>
+<div class="card text-center" style="width: 20rem;">
+    <img class="card-img-top" src="{{ user.icon.url }}" />
+    <div class="card-body">
+        <h4 class="card-title">About "{{ user }}"</h4>
+        First name:  <small class="text-muted">{{ user.first_name }}</small>
+        <br>
+        Last name: <small class="text-muted"> {{ user.last_name }}</small>
+        <br>
+        Email: <small class="text-muted"> {{ user.email }}  </small>
+        <br>
+        <br>
+        <a href="/accounts/edit/" class="btn btn-success" style="width: 100%">Edit</a>
+    </div>
+</div>
+</center>
+
+{% endblock %}

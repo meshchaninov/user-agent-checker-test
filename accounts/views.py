@@ -20,8 +20,13 @@ def edit_profile(response):
             form = EditProfileForm(response.POST, response.FILES, instance=response.user)
             if form.is_valid():
                 form.save()
-                return redirect("/")
+                return redirect("/accounts/profile")
         else:
             form = EditProfileForm(instance=response.user)
         return render(response, "registration/edit_profile.html", {"form":form})
     return HttpResponse("Unathorized", status=401)
+
+def profile(response):
+    user = response.user
+    # breakpoint()
+    return render(response, "registration/profile.html", {"user": user})
