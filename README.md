@@ -24,6 +24,8 @@ source .env/bin/activate
 pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
-python mamage.py runserver
+python manage.py runserver
 ```
 Перейдите по адресу http://127.0.0.1:8000/
+
+После каждого обновления страницы, будут добавляться новые записи. При входе в учетную запись, появляются новые поля
