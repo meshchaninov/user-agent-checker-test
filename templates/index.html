@@ -10,6 +10,10 @@
                 <br>
                 <span class="badge badge-primary">Это вы</span>
                 {% endif %}
+                {% if visitor.user == user %}
+                <br>
+                <span class="badge badge-success">Ваш логин</span> 
+                {% endif %}
             </div>
             <div class="col-md-7">
                 Дата и время посещения: <small class="text-muted">{{ visitor.datetime }}</small>
@@ -35,6 +39,14 @@
                 Версия операционной системы: <small class="text-muted">{{ visitor.user_agent.os_version}}</small>
                 <br>
                 Семество устройств: <small class="text-muted">{{ visitor.user_agent.device_family }}</small>
+                <br>
+                {% if not visitor.user is None %}
+                Пользователь: <b>{{ visitor.user }}</b>
+                <br>
+                Фото: <img src="{{ visitor.user.icon.url }}" width="50" height="50" style="border-radius: 100%" />
+                <br>
+                {% endif %}
+                {% endif %}
                 <hr>
             </div>  
         </div>

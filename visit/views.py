@@ -6,6 +6,7 @@ from .models import Visitor, UserAgent
 
 def index(request):
     user_agent = request.user_agent
+    user = None if request.user.is_anonymous else request.user
     Visitor.objects.create(
         address = request.META['REMOTE_ADDR'],
         user_agent = UserAgent.objects.create(
@@ -19,7 +20,8 @@ def index(request):
             os_family = user_agent.os.family,
             os_version = user_agent.os.version_string,
             device_family = user_agent.device.family
-        )
+        ),
+        user = user
     )
     visitors_list = Visitor.objects.all().order_by('id')
 
