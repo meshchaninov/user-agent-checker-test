@@ -18,6 +18,7 @@
 - [x] Основное требование -- писать на python. Удачи!	
 
 ## Запуск проекта
+Для Linux/MacOS
 ```bash
 python3 -m venv .env
 source .env/bin/activate
