@@ -2,7 +2,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from .forms import RegisterForm, EditProfileForm
 
-
 # Create your views here.
 def register(response):
     if response.method == "POST":
@@ -23,6 +22,6 @@ def edit_profile(response):
                 form.save()
                 return redirect("/")
         else:
-            form = EditProfileForm(response.POST, response.FILES, instance=response.user)
+            form = EditProfileForm(instance=response.user)
         return render(response, "registration/edit_profile.html", {"form":form})
     return HttpResponse("Unathorized", status=401)
