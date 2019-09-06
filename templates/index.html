@@ -41,11 +41,10 @@
                 Семество устройств: <small class="text-muted">{{ visitor.user_agent.device_family }}</small>
                 <br>
                 {% if not visitor.user is None %}
-                Пользователь: <b>{{ visitor.user }}</b>
+                Пользователь: <a href="/accounts/profile/{{ visitor.user }}"> {{ visitor.user }}</a>
                 <br>
                 Фото: <img src="{{ visitor.user.icon.url }}" width="50" height="50" style="border-radius: 100%" />
                 <br>
-                {% endif %}
                 {% endif %}
                 <hr>
             </div>  
