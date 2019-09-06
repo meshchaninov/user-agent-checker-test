@@ -1,49 +1,48 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="container">
-        <h1>Информация о посещениях</h1>
+        <h1>Information about visits</h1>
         {% for visitor in visitors %}
         <div class="row">
             <div class="col-md-2">
                 <b>id: </b>{{ visitor.id }}
-                {% if forloop.last and not visitors.has_next %}
                 <br>
-                <span class="badge badge-primary">Это вы</span>
+                {% if forloop.last and not visitors.has_next %}
+                <span class="badge badge-primary">Your connection</span>
                 {% endif %}
                 {% if visitor.user == user %}
-                <br>
-                <span class="badge badge-success">Ваш логин</span> 
+                <span class="badge badge-success">It's you</span> 
                 {% endif %}
             </div>
             <div class="col-md-7">
-                Дата и время посещения: <small class="text-muted">{{ visitor.datetime }}</small>
+                Date and time of visit: <small class="text-muted">{{ visitor.datetime }}</small>
                 <br>
-                IP-адресс: <small class="text-muted">{{ visitor.address }}</small>
+                IPv4: <small class="text-muted">{{ visitor.address }}</small>
                 <br>
-                Это телефон: <small class="text-muted">{{ visitor.user_agent.is_mobile }}</small>
+                Is mobile: <small class="text-muted">{{ visitor.user_agent.is_mobile }}</small>
                 <br>
-                Сенсорный экран: <small class="text-muted">{{ visitor.user_agent.is_touch }}</small>
+                Is touch: <small class="text-muted">{{ visitor.user_agent.is_touch }}</small>
                 <br>
-                Это планшет: <small class="text-muted">{{ visitor.user_agent.is_tablet}}</small>
+                Is tablet: <small class="text-muted">{{ visitor.user_agent.is_tablet}}</small>
                 <br>
-                Это персональный компьютер: <small class="text-muted">{{ visitor.user_agent.is_pc }}</small>
+                Is PC: <small class="text-muted">{{ visitor.user_agent.is_pc }}</small>
                 <br>
-                Это бот: <small class="text-muted">{{ visitor.user_agent.is_bot }}</small>
+                Is bot: <small class="text-muted">{{ visitor.user_agent.is_bot }}</small>
                 <br>
-                Семейство браузеров: <small class="text-muted">{{ visitor.user_agent.browser_family}}</small>
+                Browser family: <small class="text-muted">{{ visitor.user_agent.browser_family}}</small>
                 <br>
-                Версия браузера: <small class="text-muted">{{ visitor.user_agent.browser_version }}</small>
+                Browser version: <small class="text-muted">{{ visitor.user_agent.browser_version }}</small>
                 <br>
-                Семейство операционных систем: <small class="text-muted">{{ visitor.user_agent.os_family }}</small>
+                OS family: <small class="text-muted">{{ visitor.user_agent.os_family }}</small>
                 <br>
-                Версия операционной системы: <small class="text-muted">{{ visitor.user_agent.os_version}}</small>
+                OS vesion: <small class="text-muted">{{ visitor.user_agent.os_version}}</small>
                 <br>
-                Семество устройств: <small class="text-muted">{{ visitor.user_agent.device_family }}</small>
+                Device family: <small class="text-muted">{{ visitor.user_agent.device_family }}</small>
                 <br>
                 {% if not visitor.user is None %}
-                Пользователь: <a href="/accounts/profile/{{ visitor.user }}"> {{ visitor.user }}</a>
+                Username: <a href="/accounts/profile/{{ visitor.user }}"> {{ visitor.user }}</a>
                 <br>
-                Фото: <img src="{{ visitor.user.icon.url }}" width="50" height="50" style="border-radius: 100%" />
+                Icon: <img src="{{ visitor.user.icon.url }}" width="50" height="50" style="border-radius: 100%" />
                 <br>
                 {% endif %}
                 <hr>
